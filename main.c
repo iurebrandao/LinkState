@@ -19,7 +19,10 @@
 // No 14 : College PK, MD
 
 int main(){
+    Packet pacotes[V];
     
+    initPacotes(pacotes);
+
     int i,j;
     int grafo[V][V] = {/*No 1 |2 3 8*/{0, 1050, 1500, 0, 0, 0, 0, 2400, 0,  0 , 0 , 0 , 0, 0},
                        /*No 2 | 1 3 4*/{1050,0,600,750,0,0,0,0,0,0,0,0,0,0},
@@ -37,7 +40,8 @@ int main(){
                         /*No 14|  6 12 13*/{0, 0, 0, 0, 0, 1800, 0, 0, 0,0,0,300,150,0},
     };
 
-    hello(grafo);
+    hello(grafo, pacotes);
+    lsa(grafo, pacotes);
 
     return 0;
 }
