@@ -57,11 +57,15 @@ int main(){
     };
 
     hello(grafo, pacotes);
-    for(i = 0; i < V; i++)
+    for(i = 0; i < V; i++){
+      printf("********** Imprimindo Pacote/Tabela %d antes do flooding **********\n\n", i + 1);
       imprime(pacotes[i].topologia);
+    }
     lsa(pacotes);
-    for(i = 0; i < V; i++)
+    for(i = 0; i < V; i++){
+      printf("********** Imprimindo Pacote/Tabela %d após o flooding **********\n\n", i + 1);
       imprime(pacotes[i].topologia);
+    }
 
     return 0;
 }

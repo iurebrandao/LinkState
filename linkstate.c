@@ -25,7 +25,7 @@ void hello(int grafo[V][V], Packet* pacotes){
   }
 }
 
-void recursive(Packet* pacotes, int i, int inicial, int* checked){
+void call_flooding(Packet* pacotes, int i, int inicial, int* checked){
   int j, k;
   int flag = 0;
   for(j = 0; j < V; j++){
@@ -48,7 +48,7 @@ void recursive(Packet* pacotes, int i, int inicial, int* checked){
             pacotes[inicial].topologia[j][k] = INF;
         }
         checked[j] = 0;      
-        recursive(pacotes, j, inicial, checked);
+        call_flooding(pacotes, j, inicial, checked);
       }
     }
   }
@@ -71,22 +71,24 @@ void recursive(Packet* pacotes, int i, int inicial, int* checked){
 
 
 void lsa(Packet* pacotes){
-  int i,j,k;
+  int i,j;
+  int checked[V];
   for(i=0;i<V;i++){
-    int checked[V] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
-    recursive(pacotes, i, i, checked);
+    for(j=0;j<V;j++)
+      checked[j] = -1;
+    call_flooding(pacotes, i, i, checked);
   }
 }
 
 void imprime(int grafo[V][V]){
   int i, j;
   for(i=0;i<V;i++){
-    for(j=0;j<V;j++){
+    for(j=0;j<V-1;j++)
       printf("%d, ", grafo[i][j]);
-    }
+    printf("%d", grafo[i][V-1]);
     printf("\n");
   }
-  printf("\n\n");
+  printf("\n\n\n");
 }
 
 void initPacotes(Packet* pacotes){
