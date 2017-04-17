@@ -3,6 +3,7 @@
 
 // Numero de vértices do gráfico
 #define V 14
+#define INF 90000000
 
 typedef struct packet{
 	int no;
@@ -13,7 +14,7 @@ typedef struct packet{
 
 void hello(int grafo[V][V], Packet* pacotes);
 
-void lsa(int grafo[V][V], Packet* pacotes);
+void lsa(Packet* pacotes);
 
 void imprime(int grafo[V][V]);
 
