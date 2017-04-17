@@ -3,6 +3,19 @@
 #include <stdbool.h>
 #include "linkstate.h"
 
+/*
+TRABALHO IMPLEMENTAÇÃO DO LINK STATE PROTOCOL 
+
+integrantes:
+
+Felipe Lira Fernandes dos Santos - 14/0019821
+
+Iure Vieira Brandao - 14/0083197
+
+Yuri Castro do Amaral - 14/0033718
+
+*/
+
 
 // No 1 : Seattle,WA
 // No 2 : Palo alto, CA
