@@ -56,7 +56,7 @@ int main(){
       printf("Vetor distancia do nó %d:\n",i+1 );
       for ( j = 0; j < V; j++){
       	dijkstra(pacotes[i].topologia , i, j, anterior, distancia);
-      	printf("Para o nó %d: ",j);
+      	printf("Para o nó %d: ",j+1);
       	printf("%d\n",distancia[j]);
       }
     }
