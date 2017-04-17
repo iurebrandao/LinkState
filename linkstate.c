@@ -55,20 +55,6 @@ void call_flooding(Packet* pacotes, int i, int inicial, int* checked){
 
 }
 
-/*void lsa(Packet* pacotes){
-  int i,j,k;
-  for(i=0;i<V;i++){
-    for(j=0;j<V;j++){
-      if(pacotes[i].topologia[i][j] > 0){
-        for(k = 0; k < V; k++){
-          if(pacotes[j].topologia[j][k] != -1)
-            pacotes[i].topologia[j][k] = pacotes[j].topologia[j][k];
-        }
-      }
-    }
-  }
-}*/
-
 
 void lsa(Packet* pacotes){
   int i,j;
@@ -88,7 +74,7 @@ void imprime(int grafo[V][V]){
     printf("%d", grafo[i][V-1]);
     printf("\n");
   }
-  printf("\n\n\n");
+  printf("\n");
 }
 
 void initPacotes(Packet* pacotes){
@@ -102,4 +88,64 @@ void initPacotes(Packet* pacotes){
       }
     }
   }
+}
+
+/* Inicializa matriz de custo */
+
+void inicializa_matriz(int grafo[V][V], int custo[V][V]){
+    int i, j;
+
+    for(i=0;i<V;i++){
+        for(j=0;j<V;j++){
+            if(grafo[i][j]==0){
+                custo[i][j]=INF;
+            }
+            else{
+                custo[i][j]=grafo[i][j];
+            }
+        }
+    }
+
+   
+}
+
+void dijkstra(int grafo[V][V],int origem, int destino, int anterior[V], int distancia[V]){
+ 
+    int custo[V][V];
+    int visitado[V],k=1,menor_distancia,proximo_no,i,j;
+
+    inicializa_matriz(grafo,custo);
+
+    for(i=0;i<V;i++){
+        distancia[i]=custo[origem][i];
+        anterior[i]=origem;
+        visitado[i]=0;
+    }
+    
+    distancia[origem]=0;
+    visitado[origem]=1;
+   
+    
+    while(k<V-1){
+        menor_distancia=INF;
+        
+        for(i=0;i<V;i++){
+            if(distancia[i]<menor_distancia&&!visitado[i]){
+                menor_distancia=distancia[i];
+                proximo_no=i;
+            }
+        }
+                       
+            visitado[proximo_no]=1;
+            for(i=0;i<V;i++){
+                if(!visitado[i]){
+                    if(menor_distancia+custo[proximo_no][i]<distancia[i]){
+                        distancia[i]=menor_distancia+custo[proximo_no][i];
+                        anterior[i]=proximo_no;
+                    }
+                }
+            }
+        k++;
+    }    
+    
 }

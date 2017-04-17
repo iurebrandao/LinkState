@@ -19,4 +19,7 @@ void lsa(Packet* pacotes);
 void imprime(int grafo[V][V]);
 
 void initPacotes(Packet* pacotes);
+
+void dijkstra(int grafo[V][V],int origem, int destino, int anterior[V], int distancia[V]);
+
 #endif
