@@ -73,7 +73,7 @@ void recursive(Packet* pacotes, int i, int inicial, int* checked){
 void lsa(Packet* pacotes){
   int i,j,k;
   for(i=0;i<V;i++){
-    int checked[V] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    int checked[V] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
     recursive(pacotes, i, i, checked);
   }
 }
