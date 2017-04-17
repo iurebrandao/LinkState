@@ -25,7 +25,7 @@ void hello(int grafo[V][V], Packet* pacotes){
   }
 }
 
-/*void recursive(Packet* pacotes, int i, int inicial){
+void recursive(Packet* pacotes, int i, int inicial, int* checked){
   int j, k;
   int flag = 0;
   for(j = 0; j < V; j++){
@@ -38,24 +38,25 @@ void hello(int grafo[V][V], Packet* pacotes){
   }
   if(flag == 0)
     return;
-  for(j = 0; j < V; j+=){
-    if(pacotes[i].topologia[i][j] > 0){
-      for(k = 0; k < V; k++){
-        if(pacotes[j].topologia[j][k] != -1)
-          pacotes[inicial].topologia[j][k] = pacotes[j].topologia[j][k];
-        else
-          pacotes[inicial].topologia[j][k] = INF;
+  for(j = 0; j < V; j++){
+    if(checked[j] != 0){
+      if(pacotes[i].topologia[i][j] > 0 && pacotes[i].topologia[i][j] != INF){
+        for(k = 0; k < V; k++){
+          if(pacotes[j].topologia[j][k] != -1)
+            pacotes[inicial].topologia[j][k] = pacotes[j].topologia[j][k];
+          else
+            pacotes[inicial].topologia[j][k] = INF;
+        }
+        checked[j] = 0;      
+        recursive(pacotes, j, inicial, checked);
       }
     }
   }
-  for(j = 0; j < V; j+=){
-    recursive(pacotes, j, inicial);
-  }
-}*/
 
+}
 
-void lsa(Packet* pacotes){
-  int i,j, k;
+/*void lsa(Packet* pacotes){
+  int i,j,k;
   for(i=0;i<V;i++){
     for(j=0;j<V;j++){
       if(pacotes[i].topologia[i][j] > 0){
@@ -65,6 +66,15 @@ void lsa(Packet* pacotes){
         }
       }
     }
+  }
+}*/
+
+
+void lsa(Packet* pacotes){
+  int i,j,k;
+  for(i=0;i<V;i++){
+    int checked[V] = {-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1};
+    recursive(pacotes, i, i, checked);
   }
 }
 
